@@ -1,10 +1,57 @@
 r"""
+Sage code for the paper "Refined Chabauty-Kim calculations for the thrice-
+punctured line over `\ZZ[1/6]`" [Lüd24].
 
+This file contains functions for computing refined Chabauty-Kim loci in depth 2
+and depth 4 for the thrice-punctured line `X` over the ring `\ZZ_S` of
+`S`-integers, where `S = \{2,q\}` consists of two primes. The relevant functions
+are ``CK_depth_2_locus`` and ``CK_depth_4_locus``, computing the loci
+`X(\ZZ_p)_{\{2,q\},2}^{(1,0)}` and `X(\ZZ_p)_{\{2,q\},\mathrm{PL},4}^{(1,0)}`,
+respectively. These are finite subsets of `X(\ZZ_p)` containing the set of
+`S`-integral points whoses mod `2` reduction is in `X \cup \{1\}` and whose
+mod `q` reduction is in `X \cup \{0\}`. If this inclusion is satisfied, then
+Kim's conjecture holds. This holds for all depth `4` loci which have been
+computed but it does not typically hold in depth `2`. Currently, the explicit
+coefficients appearing in the Coleman functions defining the depth 4 locus are
+only known for `q = 3`, where they can be computed via the function
+``Z_one_sixth_coeffs``.
+
+EXAMPLES:
+
+For `q = 3` and auxiliary prime `p = 7` the depth 2 locus contains 8 elements;
+the depth 4 locus only 4. These are precisely the `S`-integral points
+`{-3,-1,3,9}`, so Kim's conjecture for `S = \{2,3\}` holds in depth 4:
+
+    sage: p = 7; q = 3; N = 6
+    sage: coeffs = Z_one_sixth_coeffs(p,N)
+    sage: CK_depth_2_locus(p,q,N,coeffs[0])
+    [2 + 7 + O(7^5),
+     2 + O(7^5),
+     3 + 7 + 3*7^2 + 2*7^3 + 7^4 + O(7^5),
+     3 + O(7^5),
+     4 + 6*7 + 6*7^2 + 6*7^3 + 6*7^4 + O(7^5),
+     4 + 5*7 + 6*7^2 + 5*7^3 + 2*7^4 + O(7^5),
+     6 + 6*7 + 6*7^2 + 6*7^3 + O(7^4),
+     6 + 6*7 + 3*7^2 + 2*7^3 + O(7^4)]
+    sage: CK_depth_4_locus(p,q,N,coeffs)
+    [2 + 7 + O(7^5),
+     3 + O(7^5),
+     4 + 6*7 + 6*7^2 + 6*7^3 + 6*7^4 + O(7^5),
+     6 + 6*7 + 6*7^2 + 6*7^3 + O(7^4)]
 
 REFERENCES:
 
  - [BJ08] Amnon Besser, Rob de Jeu, "Li(p) service? An algorithm for computing
    p-adic polylogarithms"
+
+ - [Lüd24] Martin Lüdtke, "Refined Chabauty-Kim calculations for the thrice-
+   punctured line over `\ZZ[1/6]`"
+
+
+AUTHORS:
+
+- Martin Lüdtke (2024-01-25)
+
 """
 
 
@@ -268,7 +315,8 @@ def CK_depth_2_locus(p, q, N, a_q2):
     `\log(2)\log(q) \mathrm{Li}_2(z) - a_{\tau_2 \tau_q} \log(z) \mathrm{Li}_1(z) = 0`,
     for a p-adic constant `a_{\tau_2 \tau_q}` called "DCW coefficient".
     The locus is a finite subset of `X(\ZZ_p)` containing the set of
-    `\{2,q\}`-integral points which reduce to 1 mod 2 and to 0 mod q.
+    `\{2,q\}`-integral points whose mod `2` reduction is in `X \cup \{1\}` and
+    whose mod `q` reduction is in `X \cup \{0\}`.
 
     INPUT:
 
@@ -364,9 +412,10 @@ def CK_depth_4_locus(p, q, N, coeffs):
     `a \mathrm{Li}_4(z) + b \log(z) \mathrm{Li}_3(z) + c\log(z)^3\mathrm{Li}_1(z) = 0`
     for p-adic constants `a_{\tau_2 \tau_q}` and `a`,`b`,`c`.
     The locus is a finite subset of `X(\ZZ_p)` containing the set of
-    `\{2,q\}`-integral points which reduce to 1 mod 2 and to 0 mod q.
-    Currently, the values of the p-adic constants are only completely known for
-    `q = 3`, where they can be computed via the function ``Z_one_sixth_coeffs``.
+    `\{2,q\}`-integral points whose mod `2` reduction is in `X \cup \{1\}` and
+    whose mod `q` reduction is in `X \cup \{0\}`. Currently, the values of the
+    p-adic constants are only completely known for `q = 3`, where they can be
+    computed via the function ``Z_one_sixth_coeffs``.
 
     INPUT:
 
