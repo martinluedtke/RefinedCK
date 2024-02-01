@@ -67,7 +67,7 @@ def compute_g(n, p, M):
 
     The power series `g_m(v) \in \ZZ_p[[v]]` are used for computing the values
     of the p-adic polylogarithms at the `(p-1)`-st roots of unity `\zeta \neq 1`
-    via the formula `\mathrm{Li}_m(\zeta) = \frac{p^m}{p^m-1} g_m(\zeta)`.
+    via the formula `\mathrm{Li}_m(\zeta) = \frac{p^m}{p^m-1} g_m(1/(1-\zeta))`.
 
     INPUT:
 
