@@ -8,7 +8,7 @@ and depth 4 for the thrice-punctured line `X` over the ring `\ZZ_S` of
 are ``CK_depth_2_locus`` and ``CK_depth_4_locus``, computing the loci
 `X(\ZZ_p)_{\{2,q\},2}^{(1,0)}` and `X(\ZZ_p)_{\{2,q\},\mathrm{PL},4}^{(1,0)}`,
 respectively. These are finite subsets of `X(\ZZ_p)` containing the set of
-`S`-integral points whoses mod `2` reduction is in `X \cup \{1\}` and whose
+`S`-integral points whose mod `2` reduction is in `X \cup \{1\}` and whose
 mod `q` reduction is in `X \cup \{0\}`. If this inclusion is satisfied, then
 Kim's conjecture holds. This holds for all depth `4` loci which have been
 computed but it does not typically hold in depth `2`. Currently, the explicit
