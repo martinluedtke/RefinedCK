@@ -589,8 +589,7 @@ def depth2_constant(p,q, N, steinberg_decomposition):
     aq2 = K(2).log(0) * K(q).log(0) - a2q
     return aq2
 
-# computes coefficients (a_{3,2}, a, b, c) appearing in the functions
-# for the Chabauty-Kim locus for S = {2,3}
+
 def Z_one_sixth_coeffs(p, N):
     r"""
     Compute the `p`-adic coefficients appearing in the Coleman functions
