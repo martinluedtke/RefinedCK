@@ -15,7 +15,7 @@ for some $p$-adic constant $a\_{\tau\_q \tau\_2}$. It contains the $S$-integral 
 
 ### Example
 
-For $q = 3$ the $p$-adic constant is given by $a\_{\tau\_q \tau\_2} = - \mathrm{Li}\_2(3)$. Computing the locus $X(\mathbb{Z}\_{5})\_{\\{2,3\\},2}^{(1,0)}$:
+For $q = 3$ the $p$-adic constant is given by $a\_{\tau\_3 \tau\_2} = - \mathrm{Li}\_2(3)$. Computing the locus $X(\mathbb{Z}\_{5})\_{\\{2,3\\},2}^{(1,0)}$:
 ```sage
 sage: p = 5; q = 3
 sage: a = -Qp(p)(3).polylog(2)
