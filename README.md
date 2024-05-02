@@ -5,6 +5,8 @@ Sage code for the paper "Refined Chabauty–Kim calculations for the thrice-punc
 
 Let $S$ be a finite set of primes, let $\mathbb{Z}\_S$ be the ring of $S$-integers and $X = \mathbb{P}^1 \smallsetminus \\{0,1,\infty\\}$ the thrice-punctured line over $\mathbb{Z}\_S$. The $S$-integral points $X(\mathbb{Z}\_S)$ correspond to solutions of the $S$-unit equation. By the theorems of Siegel (1921) and Mahler (1933), this set is finite. The Chabauty–Kim method [Kim05; Kim09] aims to locate $X(\mathbb{Z}\_S)$ inside the $p$-adic points $X(\mathbb{Z}\_p)$ (for some auxiliary prime $p \not\in S$) by producing Coleman functions which vanish on them. We consider the refined version of this method by Betts and Dogra [BD20] which imposes restrictions on the mod $\ell$ reductions of the $S$-integral points for $\ell \in S$ to obtain more Coleman functions. The vanishing loci of these functions are "refined Chabauty–Kim loci" which can be computed with this Sage code.
 
+To use the code in a Sage session, place the files "RefinedCK.sage" and "Zproots.sage" in the working directory and use the command `load("RefinedCK.sage")`.
+
 ## 1. Computing depth 2 loci
 
 Let $S = \\{2,q\\}$ for some odd prime $q$. The refined Chabauty–Kim locus $X(\mathbb{Z}\_p)\_{S,2}^{(1,0)}$ is the vanishing set in $X(\mathbb{Z}\_p)$ of a function
@@ -40,7 +42,7 @@ of $[2] \wedge [q]$ in the wedge square $E \wedge E$ of the vector space $E := \
 
 ### Example
 
-The following code computes $a\_{\tau\_{19} \tau\_2}$ as a $7$-adic number and determines the refined Chabauty–Kim locus $X(\mathbb{Z}\_7)\_{\\{2,19\\},2}^{(1,0)}$:
+The following code computes $a\_{\tau\_{19} \tau\_2}$ as a $7$-adic number and determines the refined Chabauty–Kim locus $X(\mathbb{Z}\_7)\_{\\{2,19\\},2}^{(1,0)}$. 
 
 ```sage
 sage: p = 7; q = 19
