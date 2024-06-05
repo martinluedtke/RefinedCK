@@ -127,8 +127,8 @@ def Zproots(f, coeff_prec=Infinity):
                             x -= eval_poly(f, x) / eval_poly(f_der, x)
                             root_prec = 2*root_prec - d
                         roots.append(x.add_bigoh(n-d))
-                        # root is unique mod p^(m-d), can move to next residue class mod p^(m-d)
-                        m = m-d
+                        # root is unique mod p^(d+1), can move to next residue class mod p^(d+1)
+                        m = d+1
                         a %= p^m
                         go_to_next_res_class = True
                     elif m == n:
