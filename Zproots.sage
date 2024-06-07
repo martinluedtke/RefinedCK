@@ -107,48 +107,52 @@ def Zproots(f, coeff_prec=Infinity):
                 x -= eval_poly(f, x) / eval_poly(f_der, x)
                 root_prec *= 2
             roots.append(x)
-        elif n == 1:
-            raise PrecisionError(f"Insufficient precision to decide if root is liftable: {R(rootmodp)}")
-        elif eval_poly(f,lift(rootmodp)).valuation() >= 2:
+
+        elif n >= 2 and eval_poly(f,lift(rootmodp)).valuation() < 2:
+            # no root in a + p^2 Z_p
+            go_to_next_res_class = True
+
+        elif n <= 2:
+            raise PrecisionError(f"Insufficient precision to decide if root is liftable: {rootmodp}")
+
+        else:
+            # look for roots in a + ip + p^2 Z_p for i=0,...,p-1, starting with i=0
             a = R(lift(rootmodp))
             m = 2
 
             while True:
                 go_to_next_res_class = False
                 f_of_a = eval_poly(f,a)
-                if f_of_a.valuation() >= m:
-                    f_der_a = eval_poly(f_der, a)
-                    if (f_der_a != 0 and 2*f_der_a.valuation() < m):
+                if f_of_a.valuation() < 2*m-1:
+                    # no root in a + p^m Z_p
+                    go_to_next_res_class = True
+                else:
+                    d = eval_poly(f_der, a).valuation()
+                    if d == m-1:
                         # Hensel lifting applies, can lift up to precision n-d
-                        d = f_der_a.valuation()
                         x = R(a)
-                        root_prec = m-d
+                        root_prec = m
                         while root_prec < n-d:
                             x -= eval_poly(f, x) / eval_poly(f_der, x)
                             root_prec = 2*root_prec - d
                         roots.append(x.add_bigoh(n-d))
-                        # root is unique mod p^(d+1), can move to next residue class mod p^(d+1)
-                        m = d+1
-                        a %= p^m
                         go_to_next_res_class = True
-                    elif m == n:
-                        raise PrecisionError(f"Insufficient precision to decide if root is liftable: {R(a)}")
-                    elif f_of_a.valuation() >= m+1:
-                        # root lifts mod p^(m+1)
-                        m += 1
                     else:
-                        # root doesn't lift, move to next residue class
-                        go_to_next_res_class = True
-                else:
-                    # a is not a root mod p^m, move to next residue class
-                    go_to_next_res_class = True
+                        if 2*m <= n and f_of_a.valuation() < 2*m:
+                            # no roots in the disk a + p^m Z_p
+                            go_to_next_res_class = True
+                        elif 2*m < n:
+                            # check smaller residue disks a + i p^m + p^(m+1)Z_p for i = 0,...,p-1
+                            m += 1
+                        else:
+                            raise PrecisionError(f"Insufficient precision to determine roots in {lift(R(a))} + O({p}^{m})")
 
                 if go_to_next_res_class:
                     # go back to most significant p-adic digit which is not (p-1)
                     x = lift(a)
                     while m >= 2 and (x + p^(m-1)) >= p^m:
                         m -= 1
-                        x %= p^m
+                        x -= (p-1)*p^m
                     if m == 1:
                         # can stop if the complete residue class mod p has been searched
                         break
@@ -156,4 +160,6 @@ def Zproots(f, coeff_prec=Infinity):
                         # otherwise increase the most significant digit by 1
                         x += p^(m-1)
                     a = R(x)
+
+
     return roots
