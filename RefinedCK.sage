@@ -1,5 +1,5 @@
 r"""
-Sage code for the paper "Refined Chabauty-Kim calculations for the thrice-
+Sage code for the paper "Refined Chabauty-Kim computations for the thrice-
 punctured line over `\ZZ[1/6]`" [Lüd24].
 
 This file contains functions for computing refined Chabauty-Kim loci in depth 2
@@ -44,7 +44,7 @@ REFERENCES:
  - [BJ08] Amnon Besser, Rob de Jeu, "Li(p) service? An algorithm for computing
    p-adic polylogarithms"
 
- - [Lüd24] Martin Lüdtke, "Refined Chabauty-Kim calculations for the thrice-
+ - [Lüd24] Martin Lüdtke, "Refined Chabauty-Kim computations for the thrice-
    punctured line over `\ZZ[1/6]`"
 
 
@@ -253,7 +253,7 @@ def fast_polylog(z, n, p, N, g, k0):
     The polylogarithm is computed via the power series `\mathrm{Li}_n(\zeta+pt)`
     from ``compute_polylog_series``. This function takes the precomputed series
     `g_m(v)` (m=0,...,n) and cutoff parameter `k_0` as arguments to speed up
-    the calculation. The power series are computed to precision `N`.
+    the computation. The power series are computed to precision `N`.
 
     INPUT:
 
@@ -325,7 +325,7 @@ def CK_depth_2_locus(p, q, N, a_q2):
     - ``q`` -- an odd prime
 
     - ``N`` -- a nonnegative integer specifying the p-adic precision with which
-      the coefficients of power series are calculated
+      the coefficients of power series are computed
 
     - ``a_q2`` -- the value of the DCW coefficient `a_{\tau_2 \tau_q}`
       (a p-adic number)
@@ -424,7 +424,7 @@ def CK_depth_4_locus(p, q, N, coeffs):
     - ``q`` -- an odd prime
 
     - ``N`` -- a nonnegative integer specifying the p-adic precision with which
-      the coefficients of power series are calculated
+      the coefficients of power series are computed
 
     - ``coeffs`` -- a tuple of the four p-adic coefficients
       `(a_{\tau_q \tau_2}, a, b, c)`
@@ -487,7 +487,7 @@ def CK_depth_4_locus(p, q, N, coeffs):
     if p == 2 or p == q:
         raise ValueError("prime p has to be different from 2 and q")
 
-    # power series g_m(v) for calculating Li_m(zeta) and truncation parameter k0
+    # power series g_m(v) for computing Li_m(zeta) and truncation parameter k0
     g,k0 =  polylog_data(4,p,N)
 
     delta = 1
@@ -588,7 +588,6 @@ def depth2_constant(p,q, N, steinberg_decomposition):
     a2q += 1/2 * K(2).log(0) * K(q).log(0)
     aq2 = K(2).log(0) * K(q).log(0) - a2q
     return aq2
-
 
 def Z_one_sixth_coeffs(p, N):
     r"""
