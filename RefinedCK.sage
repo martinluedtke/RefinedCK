@@ -1,6 +1,6 @@
 r"""
 Sage code for the paper "Refined Chabauty-Kim computations for the thrice-
-punctured line over `\ZZ[1/6]`" [Lüd24].
+punctured line over `\ZZ[1/6]`" [Lüd25].
 
 This file contains functions for computing refined Chabauty-Kim loci in depth 2
 and depth 4 for the thrice-punctured line `X` over the ring `\ZZ_S` of
@@ -44,7 +44,7 @@ REFERENCES:
  - [BJ08] Amnon Besser, Rob de Jeu, "Li(p) service? An algorithm for computing
    p-adic polylogarithms"
 
- - [Lüd24] Martin Lüdtke, "Refined Chabauty-Kim computations for the thrice-
+ - [Lüd25] Martin Lüdtke, "Refined Chabauty-Kim computations for the thrice-
    punctured line over `\ZZ[1/6]`"
 
 
