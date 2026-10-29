@@ -99,10 +99,10 @@ def compute_g(n, p, M):
     coeff_prec = M + n * floor(log(float(gsl-1))/log(float(p))) + 1
     R = PolynomialRing(Zp(p,coeff_prec, type='capped-abs'), names='v')
     v = R.gen()
-    f = (1 + (-v)^p - (1-v)^p)/p
+    pf = 1 + (-v)^p - (1-v)^p
     fpowersum = 0
     for i in range(coeff_prec):
-        fpowersum = 1 + p*f*fpowersum
+        fpowersum = 1 + pf*fpowersum
     g0 = -(1-v) + (1-v)^p * fpowersum
     g = (n+1)*[0]
     g[0] = g0
